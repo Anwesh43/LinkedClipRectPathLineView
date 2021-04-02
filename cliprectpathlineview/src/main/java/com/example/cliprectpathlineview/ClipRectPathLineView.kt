@@ -227,4 +227,13 @@ class ClipRectPathLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : ClipRectPathLineView {
+            val view : ClipRectPathLineView = ClipRectPathLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
