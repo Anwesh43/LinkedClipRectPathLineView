@@ -23,7 +23,6 @@ val colors : Array<Int> = arrayOf(
 val parts : Int = 4
 val scGap : Float = 0.02f / parts
 val strokeFactor : Float = 90f
-val sizeFactor : Float = 2.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 
@@ -37,6 +36,7 @@ fun Canvas.drawClipRectPathLine(scale : Float, w : Float, h : Float, paint : Pai
     val sf1 : Float = sf.divideScale(0, parts)
     val sf2 : Float = sf.divideScale(1, parts)
     val sf3 : Float = sf.divideScale(2, parts)
+    val sf4 : Float = sf.divideScale(3, parts)
     save()
     translate(w / 2, h / 2)
     for (j in 0..1) {
@@ -62,6 +62,12 @@ fun Canvas.drawClipRectPathLine(scale : Float, w : Float, h : Float, paint : Pai
             paint
         )
         restore()
+        val triPath : Path = Path()
+        triPath.moveTo(0f, -h / 2)
+        triPath.lineTo((-w / 4) * sf4, -h / 2 + (h / 2) * sf4)
+        triPath.lineTo(0f, -h / 2 + (h / 2)* sf4)
+        triPath.lineTo(0f, - h / 2)
+        drawPath(triPath, paint)
         restore()
     }
     restore()
