@@ -203,4 +203,27 @@ class ClipRectPathLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ClipRectPathLineView) {
+
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val crpl : ClipRectPathLine = ClipRectPathLine(0)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            crpl.draw(canvas, paint)
+            animator.animate {
+                crpl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            crpl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
