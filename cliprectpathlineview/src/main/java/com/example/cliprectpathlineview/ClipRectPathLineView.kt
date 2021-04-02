@@ -49,7 +49,8 @@ fun Canvas.drawClipRectPathLine(scale : Float, w : Float, h : Float, paint : Pai
         path.moveTo(-w / 2, 0f)
         path.lineTo(-w / 4, 0f)
         path.lineTo(0f, -h / 2)
-        path.lineTo(0f, 0f)
+        path.lineTo(-w / 2, -h / 2)
+        path.lineTo(-w / 2, 0f)
         clipPath(path)
         drawRect(
             RectF(
@@ -77,7 +78,6 @@ fun Canvas.drawCRPLNode(i : Int, scale : Float, paint : Paint) {
 
 class ClipRectPathLineView(ctx : Context) : View(ctx) {
 
-    private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val renderer : Renderer = Renderer(this)
 
     override fun onDraw(canvas : Canvas) {
